@@ -1,35 +1,29 @@
-// use raspberry pi to host server that loads webpages. videos, etc
-
-// server redirects to the webpage sent on the socket event
 var port = 8000;
-var http = require("http");
+var express = require("express")
+var app = express();
+var server = require("http").createServer(app);
 var url = require("url");
-var node_static = require("node-static");
+var fs = require("fs");
+var spawn = require('child_process').spawn
+var io = require("socket.io").listen(server);
 
-var static_files = new node_static.Server(__dirname);
-var server = http.createServer(handleHTTP).listen(port);
+app.use(express.static(__dirname + '/'))
 
-var io = require("socket.io");
+server.listen(port, function(){
+  console.log('Listening on port ' + port);
+});
 
+// ROUTES
+app.get('/', function (req, res) {
+  res.sendfile(__dirname+'/remote.html');
+});
 
-io.listen()
-// var express = require("express");
-// var socket = require('socket.io')
+// SOCKET EVENTS
 
-// app = express();
-// app.engine('html', require('ejs').renderFile);
-
-// app.set("views", __dirname);
-
-// app.get('/', function(req,res){
-// 	res.render('remote.html');
-// })
-
-// app.set("port", 8000);
-// app.listen(app.get("port"), function(){
-// 	console.log("Node server listening on port", app.get("port"))
-// })
-// socket.emit("redirect", function(url){
-// 	console.log("redirect event emitted")
-// })
+io.sockets.on('connection', function(socket){
+	socket.on('newUrl', function(data){
+		console.log("newUrl event heard");
+		console.log("we should redirect to "+data.url);
+	});
+})
 
