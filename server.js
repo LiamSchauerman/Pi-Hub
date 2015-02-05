@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket){
 			console.log("newUrl event heard");
 			console.log("we should redirect to "+data.url);
 			// var command = "chromium "+ data.url;
-			var runShell = new run_shell('chromium', [data.url], 
+			var runShell = new run_shell('omxplayer', ["Dunk\ of\ the\ Night\ -\ Kobe\ Bryant\ Left-Handed\ Dunk\ against\ the\ Hornets\ \(Game\ 5\,\ April\ 26\,\ 2011\)-GpiDn1dW8AQ.mp4 "], 
 				function (me, buffer) {
 					console.log("me", me.stdout);
 				    me.stdout += buffer.toString();
