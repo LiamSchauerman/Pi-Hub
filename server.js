@@ -1,18 +1,22 @@
 var port = 8000;
 var express = require("express")
 var app = express();
-var server = require("http").createServer(app);
 var url = require("url");
 var fs = require("fs");
 var spawn = require('child_process').spawn
+var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
-var omx = require('omxcontrol')
 
 
+// CONFIG
 app.use(express.static(__dirname + '/'))
 
 server.listen(port, function(){
 	console.log('Listening on port ' + port);
+});
+
+app.get('/', function (req, res) {
+  res.sendfile(__dirname+'/remote.html');
 });
 
 // UTILITY
@@ -26,64 +30,35 @@ function run_shell(cmd, args, cb, end) {
 
 
 
-// ROUTES
-app.get('/', function (req, res) {
-  res.sendfile(__dirname+'/remote.html');
-});
-
-
 // SOCKET EVENTS
 
 io.sockets.on('connection', function(socket){
 	socket.on('newUrl', function(data){
+		var child = spawn("omxplayer Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
 
-		var spawn = require('child_process').spawn,
-		    ls    = spawn('ls', ['-lh', '/usr']);
-
-		// ls.stdout.on('data', function (data) {
-		//   console.log('stdout: ' + data);
-		// });
-
-		// ls.stderr.on('data', function (data) {
-		//   console.log('stderr: ' + data);
-		// });
-
-		// ls.on('close', function (code) {
-		//   console.log('child process exited with code ' + code);
-		//   console.log(ls.stdout)
-		// });
-
-
-		if(data.url.indexOf("youtube") >= 0){
-			var runShell = new run_shell('youtube-dl',[data.url],
-			    function (me, buffer) {
-			        me.stdout += buffer.toString();
-			        socket.emit("loading",{output: me.stdout});
-			        console.log(me.stdout);
-			     },
-			    function () {
-			        //child = spawn('omxplayer',[id+'.mp4']);
-			        // omx.start(id+'.mp4');
-			        spawn()
-			        console.log("ending")
-			    });
-		} else {
-			console.log("newUrl event heard");
-			console.log("we should redirect to "+data.url);
-			// var command = "chromium "+ data.url;
-			var runShell = new run_shell('omxplayer', ["Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4"], 
-				function (me, buffer) {
-					console.log("me", me.stdout);
-				    me.stdout += buffer.toString();
-				    socket.emit("loading",{output: me.stdout});
-				    console.log(me.stdout);
-				 },
-				function () {
-					var spawn = require("child_process").spawn("omxplayer Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
-					console.log("Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
-				})
+		// var runShell = new run_shell('youtube-dl',[data.url],
+		//     function () {
+		//         //child = spawn('omxplayer',[id+'.mp4']);
+		//         // omx.start(id+'.mp4');
+		//         spawn()
+		//         console.log("ending")
+		//     });
+		// console.log("newUrl event heard");
+		// console.log("we should redirect to "+data.url);
+		// // var command = "chromium "+ data.url;
+		// run_shell('omxplayer', ["Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4"], 
+		// 	function (me, buffer) {
+		// 		console.log("me", me.stdout);
+		// 	    me.stdout += buffer.toString();
+		// 	    socket.emit("loading",{output: me.stdout});
+		// 	    console.log(me.stdout);
+		// 	 },
+		// 	function () {
+		// 		var spawn = require("child_process").spawn("omxplayer Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
+		// 		console.log("Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
+		// 	})
 			
-		}
+		// }
 	});
 })
 
