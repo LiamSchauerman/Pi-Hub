@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$('#cast').click(function(){
 			var data = {};
 			data.command = $("#command").val();
-			data.args = $("#arguments").val();
+			data.args = $("#arguments").val().split(" ");
 			socket.emit('shell', data);
 		})
 
