@@ -4,9 +4,7 @@ $(document).ready(function(){
 	socket.on('connect', function(data){
 		console.log('connected')
 		$('#cast').click(function(){
-			var url = $("#urlInput").val();
-			console.log(url);
-			socket.emit('newUrl', {url:url});
+			socket.emit('shell');
 		})
 	});
 })
