@@ -59,7 +59,8 @@ io.sockets.on('connection', function(socket){
 				    console.log(me.stdout);
 				 },
 				function () {
-					console.log("NewUrl event complete")
+					var spawn = require("child_process").spawn("omxplayer Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
+					console.log("Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
 				})
 			
 		}
