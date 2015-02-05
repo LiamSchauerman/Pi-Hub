@@ -7,6 +7,6 @@ $(document).ready(function(){
 		$('#cast').click(function(){
 			socket.emit('shell');
 		})
-		
+
 	});
 })

@@ -44,8 +44,8 @@ ifconfig
 ssh pi@10.0.1.43
 
 
-
 PISTREAM MVP
 open websocket between node-server on pi and remote computer ( same network for MVP )
 submit shell commands from client, execute shell command on pi
 
+10.0.1.43:8000
