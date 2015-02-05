@@ -37,6 +37,7 @@ io.sockets.on('connection', function(socket){
 		// var command = "chromium "+ data.url;
 		var runShell = new run_shell('chromium', [data.url], 
 			function (me, buffer) {
+				console.log("me", me.stdout);
 			    me.stdout += buffer.toString();
 			    socket.emit("loading",{output: me.stdout});
 			    console.log(me.stdout);
