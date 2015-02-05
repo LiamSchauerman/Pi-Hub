@@ -31,10 +31,29 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname+'/remote.html');
 });
 
+
 // SOCKET EVENTS
 
 io.sockets.on('connection', function(socket){
 	socket.on('newUrl', function(data){
+
+		var spawn = require('child_process').spawn,
+		    ls    = spawn('ls', ['-lh', '/usr']);
+
+		ls.stdout.on('data', function (data) {
+		  console.log('stdout: ' + data);
+		});
+
+		ls.stderr.on('data', function (data) {
+		  console.log('stderr: ' + data);
+		});
+
+		ls.on('close', function (code) {
+		  console.log('child process exited with code ' + code);
+		  console.log(ls.stdout)
+		});
+
+
 		if(data.url.indexOf("youtube") >= 0){
 			var runShell = new run_shell('youtube-dl',[data.url],
 			    function (me, buffer) {
@@ -45,6 +64,7 @@ io.sockets.on('connection', function(socket){
 			    function () {
 			        //child = spawn('omxplayer',[id+'.mp4']);
 			        // omx.start(id+'.mp4');
+			        spawn()
 			        console.log("ending")
 			    });
 		} else {
