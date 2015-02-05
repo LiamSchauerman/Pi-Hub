@@ -1,14 +1,14 @@
 # PiStream
 INSTALLING OS IMAGE
 
-Download Raspbian
+# Download Raspbian
 // http://www.raspberrypi.org/downloads/
 
-Format SD card
+# Format SD card
 Download raspbian (OS) image
 // http://www.raspberrypi.org/documentation/installation/installing-images/mac.md
 
-// copy image onto SD card
+# copy image onto SD card
 diskutil list
 diskutil unmountDisk /dev/<disk# from diskutil>
 sudo dd bs=1m if=2014-09-09-wheezy-raspbian.img of=/dev/<disk# from diskutil>
@@ -16,19 +16,19 @@ sudo dd bs=1m if=2014-09-09-wheezy-raspbian.img of=/dev/<disk# from diskutil>
 // now you are ready to boot up!
 
 
-CONNECT
+# CONNECT
 
 Plug in keyboard, mouse, display, ethernet
 Plug in power
 
 
-UPDATE OS
+# UPDATE OS
 
 sudo apt-get upgrade;
 sudo apt-get update
 
 
-INSTALLING NODE
+# INSTALLING NODE
 
 wget http://nodejs.org/dist/v0.10.2/node-v0.10.2-linux-arm-pi.tar.gz //downloads package
 tar -xvzf node-v0.10.2-linux-arm-pi.tar.gz //unzips the package
@@ -42,7 +42,7 @@ export PATH=$PATH:/home/pi/node-v0.10.2-linux-arm-pi/bin
 
 // now you can run node!
 
-SSH
+# SSH
 
 //find the pi's ip address
 ifconfig
@@ -51,7 +51,7 @@ ifconfig
 ssh pi@10.0.1.43
 
 
-PISTREAM MVP
+# PISTREAM MVP
 open websocket between node-server on pi and remote computer ( same network for MVP )
 submit shell commands from client, execute shell command on pi
 
