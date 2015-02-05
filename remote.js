@@ -5,7 +5,9 @@ $(document).ready(function(){
 		console.log('connected');
 
 		$('#cast').click(function(){
-			socket.emit('shell');
+			data.command = $("#command").val();
+			data.args = $("#arguments").val();
+			socket.emit('shell', data);
 		})
 
 	});

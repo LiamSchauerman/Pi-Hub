@@ -23,8 +23,9 @@ app.get('/', function (req, res) {
 // SOCKET EVENTS
 
 io.sockets.on('connection', function(socket){
-	socket.on('shell', function(){
+	socket.on('shell', function(data){
 		var child = spawn("omxplayer", ["Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4"]);
+	//	var child = spawn(data.command, data.args);
 	});
 })
 

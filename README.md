@@ -5,24 +5,28 @@ Download Raspbian
 // http://www.raspberrypi.org/downloads/
 
 Format SD card
-Install image onto empty card
+Download raspbian (OS) image
 // http://www.raspberrypi.org/documentation/installation/installing-images/mac.md
 
+// copy image onto SD card
 diskutil list
 diskutil unmountDisk /dev/<disk# from diskutil>
 sudo dd bs=1m if=2014-09-09-wheezy-raspbian.img of=/dev/<disk# from diskutil>
 
 // now you are ready to boot up!
 
+
 CONNECT
 
 Plug in keyboard, mouse, display, ethernet
 Plug in power
 
+
 UPDATE OS
 
 sudo apt-get upgrade;
 sudo apt-get update
+
 
 INSTALLING NODE
 
@@ -33,7 +37,9 @@ node-v0.10.2-linux-arm-pi/bin/node --version //prints v0.10.2
 // update your PATH
 // add this line to ~/.profile
 
+nano ~/.profile
 export PATH=$PATH:/home/pi/node-v0.10.2-linux-arm-pi/bin
+
 
 SSH
 
