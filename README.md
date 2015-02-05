@@ -1,13 +1,27 @@
 # PiStream
+INSTALLING OS IMAGE
+
+Download Raspbian
+// http://www.raspberrypi.org/downloads/
+
+Format SD card
+Install image onto empty card
+// http://www.raspberrypi.org/documentation/installation/installing-images/mac.md
+
+diskutil list
+diskutil unmountDisk /dev/<disk# from diskutil>
+sudo dd bs=1m if=2014-09-09-wheezy-raspbian.img of=/dev/<disk# from diskutil>
+
+// now you are ready to boot up!
 
 CONNECT
 
 Plug in keyboard, mouse, display, ethernet
 Plug in power
 
-FIRST STEPS
+UPDATE OS
 
-sudo apt-get upgrade; 
+sudo apt-get upgrade;
 sudo apt-get update
 
 INSTALLING NODE
@@ -28,3 +42,10 @@ ifconfig
 
 //from the remote computer
 ssh pi@10.0.1.43
+
+
+
+PISTREAM MVP
+open websocket between node-server on pi and remote computer ( same network for MVP )
+submit shell commands from client, execute shell command on pi
+
