@@ -36,7 +36,7 @@ app.get('/', function (req, res) {
 io.sockets.on('connection', function(socket){
 	socket.on('newUrl', function(data){
 		if(data.url.indexOf("youtube") >= 0){
-			var runShell = new run_shell('youtube-dl',['-o','%(id)s.%(ext)s','-f','/18/22',url],
+			var runShell = new run_shell('youtube-dl',[data.url],
 			    function (me, buffer) {
 			        me.stdout += buffer.toString();
 			        socket.emit("loading",{output: me.stdout});
@@ -44,7 +44,8 @@ io.sockets.on('connection', function(socket){
 			     },
 			    function () {
 			        //child = spawn('omxplayer',[id+'.mp4']);
-			        omx.start(id+'.mp4');
+			        // omx.start(id+'.mp4');
+			        console.log("ending")
 			    });
 		} else {
 			console.log("newUrl event heard");
