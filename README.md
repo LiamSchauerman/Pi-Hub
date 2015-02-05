@@ -40,6 +40,7 @@ node-v0.10.2-linux-arm-pi/bin/node --version //prints v0.10.2
 nano ~/.profile
 export PATH=$PATH:/home/pi/node-v0.10.2-linux-arm-pi/bin
 
+// now you can run node!
 
 SSH
 
