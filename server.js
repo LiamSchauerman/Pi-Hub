@@ -34,7 +34,7 @@ function run_shell(cmd, args, cb, end) {
 
 io.sockets.on('connection', function(socket){
 	socket.on('newUrl', function(data){
-		var child = spawn("omxplayer Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4")
+		var child = spawn("omxplayer", "Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4");
 
 		// var runShell = new run_shell('youtube-dl',[data.url],
 		//     function () {
