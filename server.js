@@ -6,6 +6,8 @@ var url = require("url");
 var fs = require("fs");
 var spawn = require('child_process').spawn
 var io = require("socket.io").listen(server);
+var omx = require('omxcontrol')
+
 
 app.use(express.static(__dirname + '/'))
 
@@ -15,7 +17,8 @@ server.listen(port, function(){
 
 // UTILITY
 function run_shell(cmd, args, cb, end) {
-    var child = spawn(cmd, args),
+    var spawn = require('child_process').spawn,
+        child = spawn(cmd, args),
         me = this;
     child.stdout.on('data', function (buffer) { cb(me, buffer); });
     child.stdout.on('end', end);
@@ -32,19 +35,33 @@ app.get('/', function (req, res) {
 
 io.sockets.on('connection', function(socket){
 	socket.on('newUrl', function(data){
-		console.log("newUrl event heard");
-		console.log("we should redirect to "+data.url);
-		// var command = "chromium "+ data.url;
-		var runShell = new run_shell('chromium', [data.url], 
-			function (me, buffer) {
-				console.log("me", me.stdout);
-			    me.stdout += buffer.toString();
-			    socket.emit("loading",{output: me.stdout});
-			    console.log(me.stdout);
-			 },
-			function () {
-				console.log("NewUrl event complete")
-			})
+		if(data.url.indexOf("youtube") >= 0){
+			var runShell = new run_shell('youtube-dl',['-o','%(id)s.%(ext)s','-f','/18/22',url],
+			    function (me, buffer) {
+			        me.stdout += buffer.toString();
+			        socket.emit("loading",{output: me.stdout});
+			        console.log(me.stdout);
+			     },
+			    function () {
+			        //child = spawn('omxplayer',[id+'.mp4']);
+			        omx.start(id+'.mp4');
+			    });
+		} else {
+			console.log("newUrl event heard");
+			console.log("we should redirect to "+data.url);
+			// var command = "chromium "+ data.url;
+			var runShell = new run_shell('chromium', [data.url], 
+				function (me, buffer) {
+					console.log("me", me.stdout);
+				    me.stdout += buffer.toString();
+				    socket.emit("loading",{output: me.stdout});
+				    console.log(me.stdout);
+				 },
+				function () {
+					console.log("NewUrl event complete")
+				})
+			
+		}
 	});
 })
 
