@@ -5,7 +5,10 @@ var LibraryEntryView = Backbone.View.extend({
 	template: _.template('<%= title %>'),
 	events: {
 		click: function(){
-			console.log("Library Entry View click event")
+			var data = {title: this.model.attributes.title};
+			console.log("Library Entry View click event");
+			console.log('sending this to server', data)
+			socket.emit('shell', data)
 		}
 	},
 	render: function(){

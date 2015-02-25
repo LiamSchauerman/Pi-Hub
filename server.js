@@ -9,17 +9,28 @@ var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
 
 
-// CONFIG
 app.use(express.static(__dirname + '/public'))
 
 server.listen(port, function(){
 	console.log('Listening on port ' + port);
 });
 
-// app.get('/', function (req, res) {
-// 	console.log('sending index...')
-// 	// res.sendfile('index.html');
-// });
+// /files should send the client a list of files inside video directory
+app.get('/files', function (req, res) {
+	var piFolder = '/home/pi/sync';
+	var devFolder = '/Users/liam/Desktop/paris'
+	console.log('inside /files')
+	console.log(req.url)
+	// res.writeHead(200, {
+	//   'Content-Type': 'text/html',
+	//   'Access-Control-Allow-Origin' : '*'}); 
+	// change this filepath accordingly 
+	fs.readdir(devFolder, function(err, files){
+		if( err ) throw err;
+		console.log(files);
+		res.send(files);
+	})
+});
 
 // SOCKET EVENTS
 
@@ -28,8 +39,8 @@ io.sockets.on('connection', function(socket){
 		// var child = spawn("omxplayer", ["Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4"]);
 		// var child = spawn(data.command, data.args);
 		console.log(data);
-		data.newKey = "newValue";
-		socket.emit('resp', data);
+		console.log('inside "shell" listener')
+		// socket.emit('resp', data);
 	});
 })
 
