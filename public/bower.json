@@ -1,0 +1,22 @@
+{
+  "name": "Pi-Stream",
+  "version": "0.0.1",
+  "homepage": "https://github.com/LiamSchauerman/PiStream",
+  "authors": [
+    "Liam Schauerman <ljschauerman@gmail.com>"
+  ],
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "~0.95.2",
+    "backbone": "~1.1.2",
+    "jquery": "~2.0.3"
+  }
+}
