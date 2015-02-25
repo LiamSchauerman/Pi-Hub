@@ -17,13 +17,13 @@ server.listen(port, function(){
 
 // /files should send the client a list of files inside video directory
 app.get('/files', function (req, res) {
+
 	var piFolder = '/home/pi/sync';
 	var devFolder = '/Users/liam/Desktop/paris'
+	
 	console.log('inside /files')
 	console.log(req.url)
-	// res.writeHead(200, {
-	//   'Content-Type': 'text/html',
-	//   'Access-Control-Allow-Origin' : '*'}); 
+
 	// change this filepath accordingly 
 	fs.readdir(devFolder, function(err, files){
 		if( err ) throw err;

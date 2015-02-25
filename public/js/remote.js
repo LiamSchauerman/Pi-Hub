@@ -12,8 +12,13 @@ $(document).ready(function(){
 	socket.on('resp', function(data){
 		console.log(data);
 	});
-	$.get("http://10.6.20.253:8000/files", function(data){
+
+	var macUrl = "http://10.6.20.253:8000/files";
+	var piUrl = "http://10.0.1.71:8000/files";
+
+	$.get(piUrl, function(data){
 		// reading a directory, populating videoArray
+
 		for (var i = 0; i < data.length; i++) {
 			if( data[i].indexOf('DS') < 0){
 				if(data[i].indexOf('.') >=0){
