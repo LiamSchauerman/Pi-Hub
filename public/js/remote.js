@@ -3,7 +3,7 @@ var host = document.location.origin;
 var socket = io.connect(host); 
 $(document).ready(function(){
 	socket.on('connect', function(data){
-		console.log('connected -client');
+		console.log('client connected');
 	});
 
 	// $('body').on('click', 'li', function(){
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		console.log(data);
 	});
 
-	var macUrl = "http://10.6.20.253:8000/files";
+	var macUrl = "http://10.0.1.13:8000/files";
 	var piUrl = "http://10.0.1.71:8000/files";
 
 	$.get(piUrl, function(data){
@@ -23,7 +23,7 @@ $(document).ready(function(){
 			if( data[i].indexOf('DS') < 0){
 				if(data[i].indexOf('.') >=0){
 					videoArray.push({
-						title: data[i].substring(0, data[i].indexOf('.'))
+						title: data[i]
 					})
 				} else {
 					videoArray.push({

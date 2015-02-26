@@ -16,10 +16,11 @@ server.listen(port, function(){
 });
 
 // /files should send the client a list of files inside video directory
+var piFolder;
 app.get('/files', function (req, res) {
 
-	var piFolder = '/home/pi/sync';
-	var devFolder = '/Users/liam/Desktop/paris'
+	piFolder = '/home/pi/sync/';
+	var devFolder = '/Users/liam/Desktop/PiSync/sync'
 	
 	console.log('inside /files')
 	console.log(req.url)
@@ -33,15 +34,20 @@ app.get('/files', function (req, res) {
 });
 
 // SOCKET EVENTS
-
+var parseTitleForOmx = function(title){
+	var parsed = title.replace(/ /g, "\\ ");
+	return parsed;
+}
 io.sockets.on('connection', function(socket){
 	socket.on('shell', function(data){
+
 		// var child = spawn("omxplayer", [data.title]);
 		// var child = spawn(data.command, data.args);
 		console.log(data);
-		var path = "/home/pi/sync/";
+		// var path = "/home/pi/sync/";
 		// console.log('inside "shell" listener');
-		var child = spawn("omxplayer", [path+"sopranos.avi"])
+		// var child = spawn("omxplayer", [piFolder+"sopranos.avi"])
+		console.log('omxplayer '+ piFolder + parseTitleForOmx(data.title));
 		// socket.emit('resp', data);
 	});
 })
