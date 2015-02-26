@@ -25,7 +25,7 @@ app.get('/files', function (req, res) {
 	console.log(req.url)
 
 	// change this filepath accordingly 
-	fs.readdir(devFolder, function(err, files){
+	fs.readdir(piFolder, function(err, files){
 		if( err ) throw err;
 		console.log(files);
 		res.send(files);
@@ -36,10 +36,12 @@ app.get('/files', function (req, res) {
 
 io.sockets.on('connection', function(socket){
 	socket.on('shell', function(data){
-		// var child = spawn("omxplayer", ["Kobe\ Bryant\ -\ Left\ Handed\ 3\ Pointer-4MuvPhGs6-4.mp4"]);
+		// var child = spawn("omxplayer", [data.title]);
 		// var child = spawn(data.command, data.args);
 		console.log(data);
-		console.log('inside "shell" listener')
+		var path = "/home/pi/sync/";
+		// console.log('inside "shell" listener');
+		var child = spawn("omxplayer", [path+"sopranos.avi"])
 		// socket.emit('resp', data);
 	});
 })
