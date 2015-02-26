@@ -46,7 +46,7 @@ io.sockets.on('connection', function(socket){
 		console.log(data);
 		// var path = "/home/pi/sync/";
 		// console.log('inside "shell" listener');
-		// var child = spawn("omxplayer", [piFolder+"sopranos.avi"])
+		var child = spawn("omxplayer", [piFolder+parseTitleForOmx(data.title)])
 		console.log('omxplayer '+ piFolder + parseTitleForOmx(data.title));
 		// socket.emit('resp', data);
 	});
