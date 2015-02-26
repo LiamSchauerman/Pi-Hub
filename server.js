@@ -43,11 +43,11 @@ io.sockets.on('connection', function(socket){
 
 		// var child = spawn("omxplayer", [data.title]);
 		// var child = spawn(data.command, data.args);
-		console.log(data);
+		console.log("Data: ",data);
 		// var path = "/home/pi/sync/";
 		// console.log('inside "shell" listener');
-		var child = spawn("omxplayer", [piFolder+parseTitleForOmx(data.title)])
-		console.log('omxplayer '+ piFolder + parseTitleForOmx(data.title));
+		var child = spawn("omxplayer", [piFolder + data.title])
+		console.log('omxplayer '+ piFolder + data.title);
 		// socket.emit('resp', data);
 	});
 })
