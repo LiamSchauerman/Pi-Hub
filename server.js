@@ -21,8 +21,8 @@ var newPiFolder;
 app.get('/files', function (req, res) {
 
 	piFolder = '/home/pi/sync/';
-	newPiFolder = '/mnt/32GB/32gbsync'
-	var devFolder = '/Users/liam/Desktop/PiSync/32gbsync'
+	newPiFolder = '/mnt/32GB/32gbsync/'
+	var devFolder = '/Users/liam/Desktop/PiSync/32gbsync/'
 	
 	console.log('inside /files')
 	console.log(req.url)
