@@ -15,7 +15,9 @@ $(document).ready(function(){
 
 	var macUrl = "http://10.0.1.13:8000/files";
 	var piUrl = "http://10.0.1.71:8000/files";
-
+	$("#cast").on('click', function(){
+		socket.emit('kill', null);
+	});
 	$.get(piUrl, function(data){
 		// reading a directory, populating videoArray
 
