@@ -52,8 +52,8 @@ io.sockets.on('connection', function(socket){
 		// socket.emit('resp', data);
 	});
 	socket.on('kill', function(){
-		child.kill();
-		child = undefined;
+		console.log(child);
+		child.stdin.write('q');
 	});
 })
 
