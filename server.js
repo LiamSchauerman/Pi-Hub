@@ -20,7 +20,7 @@ var piFolder;
 app.get('/files', function (req, res) {
 
 	piFolder = '/home/pi/sync/';
-	var devFolder = '/Users/liam/Desktop/PiSync/sync'
+	var devFolder = '/Users/liam/Desktop/PiSync/32gbsync'
 	
 	console.log('inside /files')
 	console.log(req.url)
@@ -32,22 +32,21 @@ app.get('/files', function (req, res) {
 		res.send(files);
 	})
 });
+var child;
 
 // SOCKET EVENTS
-var parseTitleForOmx = function(title){
-	var parsed = title.replace(/ /g, "\\ ");
-	return parsed;
-}
+
 io.sockets.on('connection', function(socket){
 	socket.on('shell', function(data){
 
 		// var child = spawn("omxplayer", [data.title]);
 		// var child = spawn(data.command, data.args);
 		console.log("Data: ",data);
-		// var path = "/home/pi/sync/";
-		// console.log('inside "shell" listener');
-		var child = spawn("omxplayer", [piFolder + data.title])
-		console.log('omxplayer '+ piFolder + data.title);
+		child = spawn("omxplayer", [piFolder + data.title]);
+		child.stdout.on('data', function(data){
+			console.log("Stdout: " + data);
+		});
+		// console.log('omxplayer '+ piFolder + data.title);
 		// socket.emit('resp', data);
 	});
 })
