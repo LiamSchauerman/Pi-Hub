@@ -56,7 +56,7 @@ io.sockets.on('connection', function(socket){
 		child.stdin.write('q');
 	});
 	socket.on('forward', function(){
-		child.stdin.write('o');
+		child.stdin.write('^[[C');
 	});
 })
 
