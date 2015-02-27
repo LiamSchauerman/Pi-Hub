@@ -15,11 +15,16 @@ $(document).ready(function(){
 
 	var macUrl = "http://10.0.1.13:8000/files";
 	var piUrl = "http://10.0.1.71:8000/files";
-	$("#cast").on('click', function(){
-		socket.emit('kill', null);
-	});
-	$("#forward").on('click', function(){
-		socket.emit('forward', null);
+	var controller = {
+		forward: '^[[C',
+		rewind: '^[[D',
+		play: 'p',
+		quit: 'q'
+	}
+
+	$(".remote-button").on('click', function(){
+		var action = $(this).data('command');
+		socket.emit('remote', {command: controller[action]});
 	});
 	$.get(piUrl, function(data){
 		// reading a directory, populating videoArray

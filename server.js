@@ -48,15 +48,11 @@ io.sockets.on('connection', function(socket){
 		child.stdout.on('data', function(data){
 			console.log("Stdout: " + data);
 		});
-		// console.log('omxplayer '+ newPiFolder + data.title);
-		// socket.emit('resp', data);
 	});
-	socket.on('kill', function(){
+	socket.on('remote', function(data){
 		console.log(child);
-		child.stdin.write('q');
+		child.stdin.write(data.command);
 	});
-	socket.on('forward', function(){
-		child.stdin.write('^[[C');
-	});
+
 })
 
