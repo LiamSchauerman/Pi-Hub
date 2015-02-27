@@ -55,5 +55,8 @@ io.sockets.on('connection', function(socket){
 		console.log(child);
 		child.stdin.write('q');
 	});
+	socket.on('forward', function(){
+		child.stdin.write('o');
+	});
 })
 

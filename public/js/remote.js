@@ -18,6 +18,9 @@ $(document).ready(function(){
 	$("#cast").on('click', function(){
 		socket.emit('kill', null);
 	});
+	$("#forward").on('click', function(){
+		socket.emit('forward', null);
+	});
 	$.get(piUrl, function(data){
 		// reading a directory, populating videoArray
 
