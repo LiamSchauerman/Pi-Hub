@@ -11,8 +11,5 @@ var LibraryView = Backbone.View.extend({
 	        return new LibraryEntryView({model: video}).render();
 	      })
 	    );
-	    console.log("el then $el")
-	    console.log(this.el)
-	    console.log(this.$el)
 	}
 })

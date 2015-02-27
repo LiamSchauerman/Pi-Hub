@@ -28,7 +28,7 @@ app.get('/files', function (req, res) {
 	console.log(req.url)
 
 	// change this filepath accordingly 
-	fs.readdir(newPiFolder, function(err, files){
+	fs.readdir(devFolder, function(err, files){
 		if( err ) throw err;
 		console.log(files);
 		res.send(files);
@@ -45,12 +45,12 @@ io.sockets.on('connection', function(socket){
 		// var child = spawn(data.command, data.args);
 		console.log("Data: ",data);
 		child = spawn("omxplayer", [newPiFolder + data.title]);
-		child.stdout.on('data', function(data){
-			console.log("Stdout: " + data);
+		child.stdout.on('data', function(output){
+			console.log("Stdout: " + output);
 		});
 	});
 	socket.on('remote', function(data){
-		console.log(child);
+		// console.log(child);
 		child.stdin.write(data.command);
 	});
 

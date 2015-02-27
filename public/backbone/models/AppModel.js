@@ -4,9 +4,5 @@ var AppModel = Backbone.Model.extend({
 
 		console.log("Our collection of videos, from the AppModel");
 		console.log(this.get('VideoList'));
-
-		this.get('VideoList').on('play', function(video){
-			console.log("Inside appmodel, video: ",video)
-		})
 	}
 })

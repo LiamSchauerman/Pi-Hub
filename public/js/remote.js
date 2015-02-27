@@ -9,9 +9,6 @@ $(document).ready(function(){
 	// $('body').on('click', 'li', function(){
 	// 	socket.emit('shell', {key:$(this).text()});
 	// });
-	socket.on('resp', function(data){
-		console.log(data);
-	});
 
 	var macUrl = "http://10.0.1.13:8000/files";
 	var piUrl = "http://10.0.1.71:8000/files";
@@ -26,7 +23,8 @@ $(document).ready(function(){
 		var action = $(this).data('command');
 		socket.emit('remote', {command: controller[action]});
 	});
-	$.get(piUrl, function(data){
+
+	$.get('http://10.6.20.253:8000/files', function(data){
 		// reading a directory, populating videoArray
 
 		for (var i = 0; i < data.length; i++) {
@@ -50,16 +48,4 @@ $(document).ready(function(){
 	});
 });
 
-var videoArrayTest = [
-	{
-		title: "Top Gun",
-		duration: "2 hours 25 minutes",
-		genre: "Action"
-	},
-	{
-		title: "The Rock",
-		duration: "1 hour 58 minutes",
-		genre: "Action"
-	}
-]
 
