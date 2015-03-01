@@ -27,7 +27,7 @@ $(document).ready(function(){
 		socket.emit('remote', {command: controller[action]});
 	});
 
-	$.get('http://10.6.20.253:8000/files', function(data){
+	$.get('http://10.0.1.71:8000/files', function(data){
 		// reading a directory, populating videoArray
 
 		for (var i = 0; i < data.length; i++) {

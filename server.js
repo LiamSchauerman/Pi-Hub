@@ -17,18 +17,16 @@ server.listen(port, function(){
 
 // /files should send the client a list of files inside video directory
 var piFolder;
-var newPiFolder;
 app.get('/files', function (req, res) {
 
-	piFolder = '/home/pi/sync/';
-	newPiFolder = '/mnt/32GB/32gbsync/'
+	piFolder = '/mnt/32GB/32gbsync/'
 	var devFolder = '/Users/liam/Desktop/PiSync/32gbsync/'
 	
 	console.log('inside /files')
 	console.log(req.url)
 
 	// change this filepath accordingly 
-	fs.readdir(devFolder, function(err, files){
+	fs.readdir(piFolder, function(err, files){
 		if( err ) throw err;
 		console.log(files);
 		res.send(files);
@@ -43,7 +41,7 @@ io.sockets.on('connection', function(socket){
 		// var child = spawn("omxplayer", [data.title]);
 		// var child = spawn(data.command, data.args);
 		console.log("Data: ",data);
-		child = spawn("omxplayer", [newPiFolder + data.title]);
+		child = spawn("omxplayer", [piFolder + data.title]);
 		child.stdout.on('data', function(output){
 			console.log("Stdout: " + output);
 		});
