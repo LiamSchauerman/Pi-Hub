@@ -18,7 +18,10 @@ $(document).ready(function(){
 		play: 'p',
 		quit: 'q'
 	}
-
+	$(".play").on('click', function(){
+		$(this).toggleClass('mdi-av-play-circle-outline mdi-av-pause-circle-outline')
+		console.log('toggle!');
+	})
 	$(".remote-button").on('click', function(){
 		var action = $(this).data('command');
 		socket.emit('remote', {command: controller[action]});
@@ -28,16 +31,11 @@ $(document).ready(function(){
 		// reading a directory, populating videoArray
 
 		for (var i = 0; i < data.length; i++) {
-			if( data[i].indexOf('DS') < 0){
-				if(data[i].indexOf('.') >=0){
-					videoArray.push({
-						title: data[i]
-					})
-				} else {
-					videoArray.push({
-						title: data[i]
-					})
-				}
+			debugger;
+			if( data[i].indexOf('DS') < 0 && data[i].indexOf('.')>0){
+				videoArray.push({
+					title: data[i]
+				})
 			}
 		};
 		var videos = new Videos(videoArray);

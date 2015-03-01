@@ -18,10 +18,13 @@
         </div>
       </nav>
       <div id='container'></div>
-      <button class='remote-button' data-command="forward" id='forward'>Forward</button>
-      <button class='remote-button' data-command="rewind" id='forward'>Rewind</button>
-      <button class='remote-button' data-command="play" id='forward'>Play</button>
-      <button class='remote-button' data-command="quit" id='forward'>Exit</button>
+      <div id='remote'>
+        <i class='remote-button mdi-av-fast-rewind' data-command="rewind"></i>
+        <i class='remote-button mdi-av-fast-forward' data-command="forward" id='forward'></i>
+        <i class='play remote-button mdi-av-pause-circle-outline' data-command="play"></i>
+        <i class='remote-button mdi-navigation-close' data-command="quit"></i>
+      </div>
+
 
     </body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

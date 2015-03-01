@@ -40,7 +40,6 @@ var child;
 
 io.sockets.on('connection', function(socket){
 	socket.on('shell', function(data){
-
 		// var child = spawn("omxplayer", [data.title]);
 		// var child = spawn(data.command, data.args);
 		console.log("Data: ",data);
@@ -50,8 +49,10 @@ io.sockets.on('connection', function(socket){
 		});
 	});
 	socket.on('remote', function(data){
+		if(child){
+			child.stdin.write(data.command);
+		}
 		// console.log(child);
-		child.stdin.write(data.command);
 	});
 
 })
