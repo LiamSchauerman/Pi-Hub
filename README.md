@@ -1,4 +1,5 @@
-# Pi Hub
+# Pi-Hub
+
 INSTALLING OS IMAGE
 
 # Download Raspbian
@@ -48,16 +49,20 @@ export PATH=$PATH:/home/pi/node-v0.10.2-linux-arm-pi/bin
 ifconfig
 
 //from the remote computer
-ssh pi@10.0.1.43
+ssh pi@10.0.1.27
 
 
-# PISTREAM MVP
+# PIHUB MVP
 open websocket between node-server on pi and remote computer ( same network for MVP )
 submit shell commands from client, execute shell command on pi
 
+<<<<<<< HEAD
 10.0.1.43:8000
 
 # OTHER HELPFUL COMMANDS
 
 # check disk space
 df -Bm
+=======
+10.0.1.27:8000
+>>>>>>> 1ff357133e979b017ec14886d5d7e13108720389
