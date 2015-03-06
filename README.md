@@ -1,4 +1,4 @@
-# PiStream
+# Pi Hub
 INSTALLING OS IMAGE
 
 # Download Raspbian
@@ -56,3 +56,8 @@ open websocket between node-server on pi and remote computer ( same network for 
 submit shell commands from client, execute shell command on pi
 
 10.0.1.43:8000
+
+# OTHER HELPFUL COMMANDS
+
+# check disk space
+df -Bm
