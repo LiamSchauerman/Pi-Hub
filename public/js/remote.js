@@ -10,7 +10,7 @@ $(document).ready(function(){
 	// 	socket.emit('shell', {key:$(this).text()});
 	// });
 
-	var macUrl = "http://10.0.1.13:8000/files";
+	var macUrl = "http://10.0.1.18:8000/files";
 	var piUrl = "http://10.0.1.71:8000/files";
 	var controller = {
 		forward: '^[[C',
@@ -27,7 +27,7 @@ $(document).ready(function(){
 		socket.emit('remote', {command: controller[action]});
 	});
 
-	$.get('http://10.0.1.71:8000/files', function(data){
+	$.get('http://192.168.1.108:8000/files', function(data){
 		// reading a directory, populating videoArray
 
 		for (var i = 0; i < data.length; i++) {
@@ -45,5 +45,3 @@ $(document).ready(function(){
 
 	});
 });
-
-
