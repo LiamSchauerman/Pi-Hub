@@ -19,7 +19,7 @@ server.listen(port, function(){
 var piFolder;
 app.get('/files', function (req, res) {
 
-	piFolder = '/mnt/32GB/32gbsync/'
+	piFolder = "/home/pi/videos/";
 	var devFolder = '/Users/liam/Desktop/PiSync/32gbsync/'
 	
 	console.log('inside /files')

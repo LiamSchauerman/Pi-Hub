@@ -11,7 +11,7 @@ $(document).ready(function(){
 	// });
 
 	var macUrl = "http://10.0.1.18:8000/files";
-	var piUrl = "http://10.0.1.71:8000/files";
+	var piUrl = "http://192.168.1.116:8000/files";
 	var controller = {
 		forward: '^[[C',
 		rewind: '^[[D',
@@ -27,7 +27,7 @@ $(document).ready(function(){
 		socket.emit('remote', {command: controller[action]});
 	});
 
-	$.get('http://192.168.1.108:8000/files', function(data){
+	$.get(piUrl, function(data){
 		// reading a directory, populating videoArray
 
 		for (var i = 0; i < data.length; i++) {
